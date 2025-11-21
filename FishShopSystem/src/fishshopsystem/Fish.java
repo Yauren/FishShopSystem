@@ -1,6 +1,7 @@
 package fishshopsystem;
+import java.io.Serializable;
 
-abstract class Fish implements Sellable {
+abstract class Fish implements Sellable, Serializable {
     private static int idCounter = 1;
     
     private String id;
@@ -16,6 +17,19 @@ abstract class Fish implements Sellable {
     public String getId() {
         return id;
     }
+
+    public int getIdNumber() {
+        try {
+            return Integer.parseInt(id.substring(4));
+        } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
+            return 0;
+        }
+    }
+    
+    public static void setNextId(int nextId) {
+        idCounter = nextId;
+    }
+    
     
     @Override
     public String getSpecies() {
@@ -39,29 +53,5 @@ abstract class Fish implements Sellable {
     @Override
     public String toString() {
         return "ID: " + id + "Species: " + species + "Price: " + price;
-    }
-}
-
-
-class FreshwaterFish extends Fish {
-    FreshwaterFish(String s, double p) {
-        super(s, p);
-    }
-    
-    @Override
-    public String getDescription() {
-        return "The species '" + species + "' is a Freshwater Fish (lives in rivers and lakes).";
-    }
-}
-
-
-class SaltwaterFish extends Fish {
-    SaltwaterFish(String s, double p) {
-        super(s, p);
-    }
-    
-    @Override
-    public String getDescription() {
-        return "The species '" + species + "' is a Saltwater Fish (lives in oceans and seas).";
     }
 }
