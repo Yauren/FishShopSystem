@@ -1,0 +1,4 @@
+fishshopsystem.InsufficientFundsException
+fishshopsystem.InvalidTransactionException
+fishshopsystem.OutOfStockException
+fishshopsystem.FishNotFoundException
